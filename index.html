@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<script type="text/javascript">
+  // This is a CodeSandbox injection script that's used to
+  // add navigation and inspector functionality to the preview
+  (function () {
+    // 1) Get the <script> tag that's currently running:
+    var me = document.currentScript;
+
+    // 2) Create the blocking‐style <script> to load:
+    var script = document.createElement("script");
+    script.src = "https://codesandbox.io/p/preview-protocol.js";
+
+    // By default a dynamically‐inserted <script> is async=true.
+    // Turn async off to make it behave like a normal blocking <script>:
+    script.async = false;
+    // (Do NOT set defer.)
+
+    // 3) Insert it immediately after the current <script>:
+    me.parentNode.insertBefore(script, me);
+  })();
+
+  const isIFramePreview = window.top !== window.self;
+
+  // Only run this script in editor context
+  if (isIFramePreview) {
+    // This script is used to enable Chrome DevTools functionality
+    (function () {
+      var script = document.createElement("script");
+      script.src =
+        "https://codesandbox.io/p/chrome-devtool/protocol/index.js";
+
+      script.onload = () => {
+        const devtoolProtocol = window.chobitsu;
+        if (devtoolProtocol) {
+          window.addEventListener("message", (event) => {
+            const { type, data } = event.data;
+
+            if (type === "FROM_DEVTOOL") {
+              devtoolProtocol.sendRawMessage(data);
+            }
+          });
+
+          devtoolProtocol.setOnMessage((data) => {
+            if (data.includes('"id":"tmp')) {
+              return;
+            }
+
+            window.parent.postMessage({ type: "TO_DEVTOOL", data }, "*");
+          });
+
+          devtoolProtocol.sendRawMessage(
+            `{"id":5,"method":"Runtime.enable","params":{}}`
+          );
+        }        
+      }
+
+      (document.head || document.documentElement).prepend(script);
+    })();
+  }
+
+  if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === "undefined") {
+    let nextID = 0;
+    let hook = (__REACT_DEVTOOLS_GLOBAL_HOOK__ = {
+      renderers: new Map(),
+      supportsFiber: true,
+      inject: (renderer) => {
+        const id = nextID++;
+        hook.renderers.set(id, renderer);
+        return id;
+      },
+      onScheduleFiberRoot() {},
+      onCommitFiberRoot() {},
+      onCommitFiberUnmount() {},
+    });
+  }
+
+  document.currentScript.remove();
+</script>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Developer - Meda Anilkumar | Brutalist Portfolio Showcase</title>
+    <meta name="description" content="The Developer - A brutalist architecture inspired portfolio showcasing Meda Anilkumar's expertise in AI, machine learning, and full-stack development. Computer Science student ready to revolutionize technology." />
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Theme Colors -->
+    <meta name="theme-color" content="#000000" />
+    <meta name="msapplication-TileColor" content="#000000" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="The Developer - Meda Anilkumar | Brutalist Portfolio Showcase" />
+    <meta property="og:description" content="A brutalist architecture inspired portfolio showcasing expertise in AI, machine learning, and full-stack development. Newspaper-style design with bold typography and authentic 18th-19th century aesthetics." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://newspaper-portfolio-fc96470f.scout.site" />
+    
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="The Developer - Meda Anilkumar | Brutalist Portfolio" />
+    <meta name="twitter:description" content="Brutalist newspaper-style portfolio showcasing AI expertise and innovative projects. Bold typography meets 18th-19th century design aesthetics." />
+    
+    <!-- Performance Optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Apple PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="The Developer" />
+    <style>
+      /* Force-hide any external watermark if injected */
+      #built-by-scout { display: none !important; visibility: hidden !important; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('SW registered: ', registration);
+            })
+            .catch((registrationError) => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
+    <!-- Defensive: remove any injected watermark -->
+    <script>
+      (function () {
+        const removeWatermark = () => {
+          // Remove by id
+          const tag = document.getElementById('built-by-scout');
+          if (tag && tag.parentNode) tag.parentNode.removeChild(tag);
+
+          // Remove any links or nodes containing the text
+          const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT);
+          let node;
+          while ((node = walker.nextNode())) {
+            try {
+              if (node && node.textContent && /Built by Scout/i.test(node.textContent)) {
+                node.remove();
+              }
+            } catch {}
+          }
+
+          // Remove any scout-tag scripts if injected
+          document.querySelectorAll('script[src*="scout-tag.js"]').forEach(s => s.remove());
+        };
+
+        // Initial run
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', removeWatermark);
+        } else {
+          removeWatermark();
+        }
+
+        // Observe for future injections
+        const mo = new MutationObserver(() => removeWatermark());
+        mo.observe(document.documentElement, { childList: true, subtree: true });
+      })();
+    </script>
+  </body>
+</html>
