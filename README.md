@@ -1,256 +1,108 @@
-# 📰 THE DEVELOPER - Brutalist Newspaper Portfolio
+# Portfolio CLI
 
-A bold, brutalist architecture-inspired portfolio designed as an authentic 18th-19th century newspaper. Combining raw, geometric brutalist design principles with vintage typography and traditional newspaper layouts.
+Developer portfolio built with React + TypeScript and Vite. Clean, fast, responsive, with dark mode, search, resume export, and charts. This README covers how to run, build, and deploy, plus what’s inside.
 
-## 🎨 **Design Philosophy**
+## ✨ Overview
+- __Purpose__: Showcase developer profile, projects, skills, and resume with a clean, modern UI.
+- __Framework__: React + TypeScript using Vite.
+- __UI__: Tailwind CSS v4 + custom UI components (Radix primitives).
+- __Extras__: PDF resume generation, keyboard shortcuts, quick search, particles, charts, dark mode.
 
-### 📰 **Authentic Newspaper Aesthetics**
-- **Historical Accuracy** - Inspired by genuine 18th-19th century newspaper layouts
-- **Traditional Typography** - Period-authentic fonts (Playfair Display, Old Standard TT, Crimson Text)
-- **Classic Layout** - Multi-column layouts with traditional newspaper sections
-- **Vintage Print Effects** - Aged paper textures and authentic printing simulation
+## 🚀 Features
+- __Sectioned UI__: Home, About, Skills, Projects, Contact.
+- __Dark/Light Mode__: Toggle with persistent theme.
+- __PDF Resume__: One-click export (`src/utils/pdfGenerator.ts`).
+- __Keyboard Shortcuts__: See `src/components/KeyboardShortcuts.tsx`.
+- __Quick Search__: Spotlight-style search (`src/components/QuickSearch.tsx`).
+- __Charts & Stats__: `chart.js` + `recharts` integrations.
+- __Contact Form__: EmailJS integration (`src/components/ContactForm.tsx`).
 
-### 🏗️ **Brutalist Architecture Principles**
-- **Raw, Bold Elements** - Unrefined geometric shapes and stark contrasts
-- **Bold Typography** - Massive headlines with aggressive letter-spacing
-- **Geometric Structures** - Angular borders, blocks, and harsh shadows
-- **Uncompromising Design** - No rounded corners, stark black/white contrasts
+## 🧱 Tech Stack
+- React 19, TypeScript, Vite 6
+- Tailwind CSS 4, Radix UI primitives
+- Chart.js, Recharts, Framer Motion, tsParticles
+- React Hook Form + Zod
 
-### 📖 **Content Structure**
-- **Masthead** - "THE DEVELOPER" - Authentic newspaper header
-- **Breaking News** - Hero section as front-page headline
-- **Feature Articles** - About section as in-depth journalism
-- **Technical Specifications** - Skills presented as detailed analysis
-- **Featured Stories** - Projects as investigative journalism
-- **Classified Ads** - Contact section as vintage advertisements
+See `package.json` for full dependencies.
 
-## ✨ **Distinctive Features**
+## 🛠️ Getting Started
+Prerequisites: Node.js 18+ and npm (or pnpm/bun if you prefer).
 
-### 🎯 **Authentic Newspaper Elements**
-- **Traditional Masthead** - Period-accurate newspaper header with date and edition info
-- **Column Layouts** - Multi-column text with justified alignment and hyphenation
-- **Drop Caps** - Large decorative first letters in traditional style
-- **Ornamental Borders** - Classic newspaper decorative elements
-- **Bylines & Datelines** - Authentic journalistic formatting
-- **Editorial Sections** - Content organized like a real newspaper
-
-### ⚡ **Brutalist Design Features**
-- **Geometric Blocks** - Angular, skewed elements with harsh shadows
-- **Bold Borders** - Thick, double-line borders throughout
-- **Raw Typography** - Uncompromising font choices with massive headlines
-- **High Contrast** - Stark black and white color scheme
-- **Sharp Edges** - Zero border radius on all elements
-- **Aggressive Spacing** - Bold use of whitespace and dramatic margins
-
-### 🎨 **Visual Excellence**
-- **Aged Paper Effect** - Subtle texture simulation for authenticity
-- **Print Quality** - Filter effects that simulate vintage printing
-- **Vintage Buttons** - Hand-crafted button styles matching the era
-- **Typography Hierarchy** - Clear distinction between headlines, subheads, and body text
-- **Decorative Elements** - Period-appropriate ornaments and flourishes
-
-## 🛠️ **Technical Implementation**
-
-### 📚 **Typography System**
-```css
-/* Newspaper Masthead */
-.newspaper-masthead {
-  font-family: "EB Garamond", serif;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
-}
-
-/* Headlines */
-.newspaper-headline {
-  font-family: "Playfair Display", serif;
-  font-weight: 900;
-  text-transform: uppercase;
-  line-height: 0.9;
-}
-
-/* Body Text */
-.newspaper-body {
-  font-family: "Crimson Text", serif;
-  text-align: justify;
-  hyphens: auto;
-  line-height: 1.7;
-}
+Install dependencies:
+```bash
+npm install
 ```
 
-### 🏗️ **Brutalist Components**
-```css
-/* Brutalist Block */
-.brutalist-block {
-  background: #1a1a1a;
-  color: #f8f6f0;
-  border: 4px solid #1a1a1a;
-  transform: skew(-2deg);
-  box-shadow: 8px 8px 0px #1a1a1a;
-}
-
-/* Brutalist Borders */
-.brutalist-border {
-  border: 6px solid #1a1a1a;
-  border-style: double;
-}
-
-/* Vintage Buttons */
-.vintage-button {
-  border: 3px solid #1a1a1a;
-  font-family: "Courier New", monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
+Start dev server:
+```bash
+npm run dev
 ```
 
-### 📰 **Layout Structure**
-- **Fixed Header** - Sticky newspaper masthead with navigation
-- **Multi-column Layout** - Traditional newspaper column system
-- **Section Dividers** - Double-border section separators
-- **Responsive Design** - Maintains newspaper aesthetics on all devices
+Build for production:
+```bash
+npm run build
+```
 
-## 🎨 **Color Palette**
+Preview production build:
+```bash
+npm run preview
+```
 
-### 🌞 **Light Mode (Aged Paper)**
-- **Background**: `#f8f6f0` - Aged newspaper cream
-- **Foreground**: `#1a1a1a` - Deep newspaper black  
-- **Borders**: `#1a1a1a` - Traditional ink black
-- **Muted**: `#e5e5e5` - Subtle paper gray
+Lint:
+```bash
+npm run lint
+```
 
-### 🌙 **Dark Mode (Night Edition)**
-- **Background**: `#0f0f0f` - Deep newspaper night
-- **Foreground**: `#f0f0f0` - Bright ink white
-- **Borders**: `#f0f0f0` - Inverted contrast
-- **Accent**: `#262626` - Subtle highlights
-
-## 📱 **Responsive Adaptation**
-
-### 📱 **Mobile Experience**
-- **Single Column** - Adapts multi-column layout to single column
-- **Scalable Headlines** - Typography scales down appropriately  
-- **Touch-Friendly** - Buttons and interactions optimized for mobile
-- **Simplified Brutalism** - Reduces complexity while maintaining aesthetic
-
-### 💻 **Desktop Excellence**
-- **Multi-Column Layout** - Full newspaper experience
-- **Large Typography** - Headlines can reach 8rem+ sizes
-- **Enhanced Shadows** - Full brutalist shadow effects
-- **Rich Interactions** - Hover effects and animations
-
-## ⚡ **Interactive Features**
-
-### ⌨️ **Keyboard Navigation**
-- `Ctrl+K` - Open advanced search
-- `Ctrl+D` - Download PDF resume  
-- `Ctrl+Shift+T` - Toggle dark/light mode
-- `?` - Show keyboard shortcuts help
-- `H/A/S/P/C` - Quick section navigation
-
-### 🔍 **Advanced Search**
-- Real-time search across skills and projects
-- Newspaper-styled modal interface
-- Category-based results display
-
-### 📄 **PDF Resume Generation**
-- One-click professional resume download
-- Maintains brutalist aesthetic in PDF format
-- Comprehensive project and skill documentation
-
-## 🏗️ **Architecture**
-
-### 🎯 **Component Structure**
+## 📁 Project Structure
 ```
 src/
-├── components/
-│   ├── LoadingSpinner.tsx      # Newspaper loading animation
-│   ├── DarkModeToggle.tsx      # Theme switcher
-│   ├── ContactForm.tsx         # Brutalist contact form
-│   ├── QuickSearch.tsx         # Search functionality
-│   └── ...
-├── utils/
-│   ├── pdfGenerator.ts         # Resume PDF creation
-│   └── analytics.ts            # Performance tracking
-└── index.css                   # Brutalist newspaper styles
+├─ components/
+│  ├─ ui/                      # Radix-based UI primitives
+│  ├─ ContactForm.tsx          # EmailJS form
+│  ├─ DarkModeToggle.tsx       # Theme switcher
+│  ├─ QuickSearch.tsx          # Spotlight search
+│  ├─ KeyboardShortcuts.tsx    # Shortcut help modal
+│  ├─ GitHubStats.tsx          # Stats/visualizations
+│  └─ ...
+├─ utils/
+│  ├─ pdfGenerator.ts          # PDF export
+│  └─ analytics.ts             # Performance tracking
+├─ backend/
+│  └─ api.ts                   # API helpers (optional hosting)
+├─ index.css                   # Global styles
+└─ App.tsx / main.tsx          # App entry
 ```
 
-### 🎨 **CSS Architecture**
-- **Utility Classes** - Custom newspaper and brutalist utilities
-- **Component Styles** - Scoped component-specific styling  
-- **Responsive Design** - Mobile-first approach with desktop enhancements
-- **Dark Mode** - Complete theme switching support
+## 🔐 Environment Variables (if using EmailJS or S3)
+Create a `.env` (or use your hosting provider’s secrets):
+```
+VITE_EMAILJS_PUBLIC_KEY=...
+VITE_EMAILJS_SERVICE_ID=...
+VITE_EMAILJS_TEMPLATE_ID=...
 
-## 🚀 **Performance**
-
-### ⚡ **Optimization Features**
-- **Lazy Loading** - Components load as needed
-- **Code Splitting** - Optimized bundle sizes
-- **Font Optimization** - Efficient Google Fonts loading
-- **Image Optimization** - Compressed and responsive images
-
-### 📊 **Analytics**
-- **Performance Monitoring** - Built-in Web Vitals tracking
-- **User Interaction** - Comprehensive interaction analytics
-- **Error Tracking** - Automatic error reporting
-
-## 🎯 **User Experience**
-
-### 🖱️ **Interactions**
-- **Hover Effects** - Subtle brutalist hover animations
-- **Smooth Scrolling** - Enhanced section navigation
-- **Copy to Clipboard** - Easy contact information copying
-- **Visual Feedback** - Clear interaction confirmations
-
-### ♿ **Accessibility**
-- **Keyboard Navigation** - Full keyboard accessibility
-- **Screen Readers** - Semantic HTML structure
-- **High Contrast** - Excellent readability ratios
-- **Reduced Motion** - Respects user preferences
-
-## 🔧 **Customization**
-
-### 🎨 **Easy Theming**
-```css
-:root {
-  --background: #f8f6f0;  /* Aged paper */
-  --foreground: #1a1a1a;  /* Newspaper ink */
-  --border: #1a1a1a;      /* Traditional borders */
-}
+# Optional if you wire S3 uploads
+VITE_AWS_REGION=...
+VITE_AWS_S3_BUCKET=...
 ```
 
-### 📝 **Content Updates**
-- Update personal information in `App.tsx`
-- Modify skills and projects data
-- Customize newspaper sections and headlines
+Ensure you never commit real secrets.
 
-### 🖼️ **Visual Customization**
-- Adjust typography scales
-- Modify brutalist elements
-- Customize aged paper effects
+## 🌐 Deployment
+- __Static hosting__: Output is in `dist/` (Vercel, Netlify, GitHub Pages).
+- Build with `npm run build`, then deploy `dist/`.
+- Service worker in `public/sw.js` is included for PWA behavior if enabled by host settings.
 
-## 📰 **Why This Design?**
+## 🔗 Links
+- Repo: https://github.com/anilkumara9/portfolio-cli
+- Live (add later): your-deployment-url
 
-### 🏗️ **Brutalist Philosophy**
-- **Uncompromising** - Bold design that commands attention
-- **Functional** - Every element serves a clear purpose
-- **Memorable** - Distinctive aesthetic that stands out
-- **Authentic** - True to brutalist architectural principles
+## 🧭 Roadmap
+- Add project screenshots/GIFs to README
+- Add CI/CD badge and deployment link
+- Optional: Hook up analytics and error tracking
 
-### 📜 **Historical Connection**
-- **Timeless Appeal** - Connects modern skills with historical presentation
-- **Storytelling** - Portfolio presented as compelling journalism
-- **Credibility** - Serious, professional newspaper format
-- **Narrative Structure** - Content flows like engaging news stories
+## 🤝 Contributing
+PRs and issues are welcome. For major changes, please open an issue first to discuss what you’d like to change.
 
-### 💼 **Professional Impact**
-- **Attention-Grabbing** - Impossible to ignore in a crowded field
-- **Conversation Starter** - Unique approach generates discussion
-- **Technical Showcase** - Demonstrates advanced CSS and design skills
-- **Brand Differentiation** - Completely unique personal brand
-
----
-
-**"All The Code That's Fit To Print"** - A revolutionary approach to portfolio presentation that combines the raw power of brutalist architecture with the authentic charm of historical journalism.
-
-**Built with React, TypeScript, and Uncompromising Design Vision.**
+## 📄 License
+MIT
